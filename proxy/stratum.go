@@ -197,7 +197,7 @@ func (cs *Session) setDifficulty() error {
 	}
 
 	diff := TargetHexToDiff(cs.targetNextJob).Int64()
-	setDiff := float64(diff) / genesisWork
+	setDiff := float64(diff) / genesisWork * 65536
 
 	message := JSONPushMessage{Id: nil, Method: "mining.set_difficulty", Params: []interface{}{setDiff}}
 	return cs.enc.Encode(&message)
